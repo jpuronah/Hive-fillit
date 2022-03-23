@@ -6,7 +6,7 @@
 /*   By: jpuronah <jpuronah@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/31 15:29:51 by jpuronah          #+#    #+#             */
-/*   Updated: 2022/03/22 17:17:41 by jpuronah         ###   ########.fr       */
+/*   Updated: 2022/03/23 12:29:24 by jpuronah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,8 +46,11 @@ static char	*ft_set_board(char *board, char **tetri_list, size_t size)
 	output = NULL;
 	while (1)
 	{
-		ft_empty_board(board, size);
+		board = ft_empty_board(board, size);
+		//output = ft_strnew(size * (size + 1) + 1);
 		output = ft_solve(board, tetri_list, size);
+		/*board = output;
+		free(output);*/
 		//printf("output1:\n%s\n", output);
 		if (!output)
 		{
@@ -72,6 +75,7 @@ void	ft_board(char **tetri_list)
 
 	size = 0;
 	n_pieces = 0;
+	board = NULL;	//Lisäsin tän
 	while (tetri_list[n_pieces] != NULL)
 		++n_pieces;
 	while (size * size < n_pieces * 4)

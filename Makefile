@@ -6,7 +6,7 @@
 #    By: jpuronah <jpuronah@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/04 13:23:49 by jpuronah          #+#    #+#              #
-#    Updated: 2022/03/22 17:19:21 by jpuronah         ###   ########.fr        #
+#    Updated: 2022/03/23 12:14:52 by jpuronah         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,6 +33,10 @@ all: $(NAME)
 $(NAME):
 	make -C $(LIBFT)
 	gcc $(FLAGS) -o $(NAME) $(SRC) -I $(HEADER) -L. libft/libft.a
+
+leaks: fclean
+	make -C $(LIBFT)
+	gcc $(FLAGS) -o $(NAME) $(SRC) -I $(HEADER) -L. libft/libft.a -fsanitize=address
 
 clean:
 	/bin/rm -f $(OBJS)
