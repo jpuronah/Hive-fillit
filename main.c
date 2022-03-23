@@ -6,13 +6,17 @@
 /*   By: jpuronah <jpuronah@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/28 12:10:11 by twileniu          #+#    #+#             */
-/*   Updated: 2022/03/23 12:08:06 by jpuronah         ###   ########.fr       */
+/*   Updated: 2022/03/23 12:36:30 by jpuronah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 
-/* NÄÄ KAKS!!!!!!
+/*
+= = = =  Lisätty ympäri ohjelmaa initializationeit, eli XXX = NULL; = = = =
+
+
+NÄÄ KAKS!!!!!!
 - halutaaks printtaa vaik esim ft_putendl_fd:llä mielummi toi error?
 - ft_usagen fd, onks STDERR_FILENO oikee vai iha vaa ykköne (1)
 
