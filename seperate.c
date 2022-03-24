@@ -6,7 +6,7 @@
 /*   By: jpuronah <jpuronah@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/28 16:18:05 by twileniu          #+#    #+#             */
-/*   Updated: 2022/03/22 17:15:23 by jpuronah         ###   ########.fr       */
+/*   Updated: 2022/03/23 16:10:52 by jpuronah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,9 +53,9 @@ char	**ft_separate(char *pieces)
 	size_t	n_pieces;
 
 	n_pieces = (ft_strlen(pieces) + 1) / 21;
-	printf("len: %zu\n", ft_strlen(pieces));
-	printf("pieces: %zu\n", n_pieces);
-	printf("%zu\n", (ft_strlen(pieces) + 1) / 21);
+	//printf("len: %zu\n", ft_strlen(pieces));
+	//printf("pieces: %zu\n", n_pieces);
+	//printf("%zu\n", (ft_strlen(pieces) + 1) / 21);
 	tetri_list = (char **)malloc(sizeof(char) * (n_pieces * 21) + 1);
 	if (!tetri_list)
 		ft_error();

@@ -6,14 +6,15 @@
 /*   By: jpuronah <jpuronah@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/31 15:29:51 by jpuronah          #+#    #+#             */
-/*   Updated: 2022/03/23 12:34:09 by jpuronah         ###   ########.fr       */
+/*   Updated: 2022/03/23 12:35:41 by jpuronah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 #include <stdio.h>
 
-/*Kaikki turha täält pois, eli ne jos h ==1 tai h == 4 lähti fittuu
+/*
+Kaikki turha täält pois, eli ne jos h ==1 tai h == 4 lähti fittuu
 	-> on hidas mut ehk menee läpi
 
 	HUOM!
