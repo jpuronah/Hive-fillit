@@ -20,20 +20,30 @@ echo "______________________________"
 echo "================================="
 echo " VALID FILES: "
 echo "================================="
-echo "Test result: "
-./fillit ./eval_files/easy
-echo "Correct answer"
+echo "Correct answer:	EASY"
 cat ./eval_files/easy_answer
+echo "Test result:	EASY"
+./fillit ./eval_files/easy
+echo "______________________________"
+echo "Correct answer MEDIUM"
+cat ./eval_files/medium_answer
+echo "Test result: MEDIUM"
+./fillit ./eval_files/medium
+echo "______________________________"
+echo "Correct answer HARD"
+cat ./eval_files/hard_answer
+echo "Test result: HARD"
+./fillit ./eval_files/hard
 echo "================================="
 echo " SPEED: "
 echo "================================="
 echo "If result more than 1 second -> fail"
 time ./fillit ./eval_files/test1
 echo "______________________________"
-echo "Correct answer"
+echo "Correct answer test7"
 cat ./eval_files/test_7_answer
 echo "______________________________"
-echo "Test result: "
+echo "Test result test7: "
 time ./fillit ./eval_files/test7
 echo "result 			< 1 second: 		5 points
 result between 		1 and 5 second: 	4 points

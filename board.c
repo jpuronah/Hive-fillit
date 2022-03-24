@@ -6,7 +6,7 @@
 /*   By: jpuronah <jpuronah@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/31 15:29:51 by jpuronah          #+#    #+#             */
-/*   Updated: 2022/03/23 12:35:41 by jpuronah         ###   ########.fr       */
+/*   Updated: 2022/03/24 16:53:06 by jpuronah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ static char	*ft_set_board(char *board, char **tetri_list, size_t size)
 	output = NULL;
 	while (1)
 	{
-		board = ft_empty_board(board, size);	//Täs oli ennen pelkästää function call (ei board = ft....)
+		board = ft_empty_board(board, size); //Täs oli ennen pelkästää function call (ei board = ft....)
 		//output = ft_strnew(size * (size + 1) + 1);
 		output = ft_solve(board, tetri_list, size);
 		/*board = output;
@@ -67,7 +67,7 @@ static char	*ft_set_board(char *board, char **tetri_list, size_t size)
 		else
 		{
 			//printf("output2:\n%s\n", output);
-			return (output);	//Täs oli ennen board
+			return (output); //Täs oli ennen board
 		}
 	}
 	return (NULL);

@@ -6,11 +6,15 @@
 /*   By: jpuronah <jpuronah@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/28 12:33:09 by twileniu          #+#    #+#             */
-/*   Updated: 2022/03/16 16:00:38 by jpuronah         ###   ########.fr       */
+/*   Updated: 2022/03/24 17:04:26 by jpuronah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
+
+/* fd:tä ei tartteis välttämät viedä funktiost toisee ku se kuitenki rivil 25 
+asetetaa uusiks, en tiiä onksil välii
+*/
 
 static char	*ft_read_to_fill(char *pieces, int fd, char *argv)
 {
@@ -18,7 +22,7 @@ static char	*ft_read_to_fill(char *pieces, int fd, char *argv)
 	ssize_t	n_bytes;
 	char	buf;
 
-	buf = '\0';
+	buf = '\0';			//TÄäki yks hyvä kysymys
 	n_bytes = 0;
 	fd = open(argv, O_RDONLY);
 	if (fd < 0)
@@ -43,7 +47,7 @@ char	*ft_reader(char *argv)
 	ssize_t	n_bytes;
 	size_t	length;
 
-	buf = '\0';
+	buf = '\0';				//TÄäki yks hyvä kysymys
 	pieces = NULL;
 	fd = open(argv, O_RDONLY);
 	if (fd < 0)

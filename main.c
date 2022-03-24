@@ -6,7 +6,7 @@
 /*   By: jpuronah <jpuronah@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/28 12:10:11 by twileniu          #+#    #+#             */
-/*   Updated: 2022/03/23 12:36:30 by jpuronah         ###   ########.fr       */
+/*   Updated: 2022/03/24 17:00:58 by jpuronah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,21 +25,41 @@ Lisäks:
 - 
 */
 
+
+/* Pitäskö täs olla ft_putendl_fd?
+	niiku näi:
+
+	void	ft_error(void)
+	{
+		ft_putendl_fd("error", 2);
+		exit(EXIT_FAILURE);
+	}
+
+
+*/
+
 void	ft_error(void)
 {
 	ft_putendl("error");
 	exit(EXIT_FAILURE);
 }
 
+/*Vaihoin usages STDERR_FILENO ykkösiks, et output menee fileen jos:
+	>./fillit > output
+
+	Tää ei ees toimi, enkä tiiä pitäskö ton toimii tollee
+*/
+
 static void	ft_usage(void)
 {
-	ft_putstr_fd("usage: ", STDERR_FILENO);
-	ft_putstr_fd("fillit", STDERR_FILENO);
-	ft_putstr_fd(" input_file\n", STDERR_FILENO);
+	ft_putstr_fd("usage: ", 2);
+	ft_putstr_fd("fillit", 2);
+	ft_putstr_fd(" input_file\n", 2);
 }
 /*Mainissa noi ehdot: if(jotain paskaa), tarviiks olla?
 
 */
+
 int	main(int argc, char **argv)
 {
 	char	*pieces;

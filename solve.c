@@ -6,7 +6,7 @@
 /*   By: jpuronah <jpuronah@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/03 14:09:20 by jpuronah          #+#    #+#             */
-/*   Updated: 2022/03/22 17:18:12 by jpuronah         ###   ########.fr       */
+/*   Updated: 2022/03/24 16:54:13 by jpuronah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,7 +92,6 @@ static size_t	ft_place(char *board, char *tetri, size_t i, size_t size)
 		if (count == 4)
 			break ;
 	}
-	//printf("place:\n%s\n", board);
 	if (ft_placement_check(board, letter, size))
 		return (1);
 	return (0);
@@ -107,7 +106,6 @@ char	*ft_solve(char *board, char **tetri_list, size_t size)
 		return (board);
 	while (tetri_list[0] && tetri_list[0][0] < 'A')
 		tetri_list[0]++;
-	//printf("solve:\n%s\n", board);
 	while (board[i])
 	{
 		if (ft_place(board, *tetri_list, i, size) != 1)
