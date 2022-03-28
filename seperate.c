@@ -6,19 +6,11 @@
 /*   By: jpuronah <jpuronah@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/28 11:16:39 by jpuronah          #+#    #+#             */
-/*   Updated: 2022/03/28 17:30:56 by jpuronah         ###   ########.fr       */
+/*   Updated: 2022/03/28 17:33:56 by jpuronah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
-#include <stdio.h>
-
-/* Added: sub_string = NULL line 27
-	changed tetri_list malloc
-
-	vielki outo: eka malloccaan koko piecesin verran tilaa, minkä jälkee
-	jokaselle tetripiecelle vielä eriksee 21??!! en ymmärrä
-	*/
 
 static char	*ft_strsub_chr(char const *pieces, size_t start,
 size_t len, ssize_t chr)
