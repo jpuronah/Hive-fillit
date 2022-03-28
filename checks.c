@@ -6,7 +6,7 @@
 /*   By: jpuronah <jpuronah@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/28 13:16:19 by twileniu          #+#    #+#             */
-/*   Updated: 2022/03/22 17:14:50 by jpuronah         ###   ########.fr       */
+/*   Updated: 2022/03/28 10:41:30 by jpuronah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,24 +14,24 @@
 
 static void	ft_characters(char *pieces)
 {
-	size_t	i;
+	size_t	index;
 	size_t	tag;
 	size_t	dot;
 	size_t	new_lines;
 
-	i = 0;
+	index = 0;
 	dot = 0;
 	tag = 0;
 	new_lines = 0;
-	while (pieces[i])
+	while (pieces[index])
 	{
-		if (pieces[i] == '.')
+		if (pieces[index] == '.')
 			++dot;
-		if (pieces[i] == '#')
+		if (pieces[index] == '#')
 			++tag;
-		if (pieces[i] == '\n')
+		if (pieces[index] == '\n')
 			++new_lines;
-		++i;
+		++index;
 	}
 	if (new_lines == 0 || tag == 0 || dot == 0)
 		ft_error();
@@ -45,69 +45,66 @@ static void	ft_check_line_len(char *pieces)
 {
 	size_t	len;
 	size_t	line_count;
-	size_t	i;
+	size_t	index;
 
 	len = 0;
 	line_count = 0;
-	i = 0;
-	while (pieces[i])
+	index = 0;
+	while (pieces[index])
 	{
 		len++;
-		if (pieces[i] == '\n')
+		if (pieces[index] == '\n')
 		{
 			line_count++;
 			if (line_count % 5 != 0)
 				if (len != 5)
 					ft_error();
-			if (line_count % 5 == 0 && pieces[i] != '\n')
+			if (line_count % 5 == 0 && pieces[index] != '\n')
 				if (len != 1)
 					ft_error();
 			len = 0;
 		}
-		i++;
+		index++;
 	}
 }
 
-static size_t	ft_check_adj(char *pieces, size_t i, size_t adj, size_t count)
+static size_t	ft_check_adjacent(char *pieces, size_t index, size_t adjacent,
+size_t count)
 {
-	if (count > 0 && pieces[i] == '#' && pieces[i - 1] == '#')
-		++adj;
-	if (count < 20 && pieces[i] == '#' && pieces[i + 1] == '#')
-		++adj;
-	if (count > 4 && pieces[i] == '#' && pieces[i - 5] == '#')
-		++adj;
-	if (count < 16 && pieces[i] == '#' && pieces[i + 5] == '#')
-		++adj;
-	return (adj);
+	if (count > 0 && pieces[index] == '#' && pieces[index - 1] == '#')
+		++adjacent;
+	if (count < 20 && pieces[index] == '#' && pieces[index + 1] == '#')
+		++adjacent;
+	if (count > 4 && pieces[index] == '#' && pieces[index - 5] == '#')
+		++adjacent;
+	if (count < 16 && pieces[index] == '#' && pieces[index + 5] == '#')
+		++adjacent;
+	return (adjacent);
 }
 
 static void	ft_adjacent(char *pieces)
 {
-	size_t	i;
-	size_t	adj;
+	size_t	index;
+	size_t	adjacent;
 	size_t	count;
 
 	count = 0;
-	i = 0;
-	adj = 0;
-	while (pieces[i])
+	index = 0;
+	adjacent = 0;
+	while (pieces[index])
 	{
-		adj = ft_check_adj(pieces, i, adj, count);
-		++i;
+		adjacent = ft_check_adjacent(pieces, index, adjacent, count);
+		++index;
 		++count;
-		if ((i + 1) % 21 == 0)
+		if ((index + 1) % 21 == 0)
 		{
-			if (!(adj == 6 || adj == 8))
+			if (!(adjacent == 6 || adjacent == 8))
 				ft_error();
-			adj = 0;
+			adjacent = 0;
 			count = 0;
 		}
 	}
 }
-
-/*Näitten ny pitäs olla OK kaiken järjen mukaan?
-	-> ei vitus oo kuitenkaa
-*/
 
 void	ft_checks(char *pieces)
 {
