@@ -6,11 +6,12 @@
 /*   By: jpuronah <jpuronah@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/28 11:16:39 by jpuronah          #+#    #+#             */
-/*   Updated: 2022/03/28 11:31:51 by jpuronah         ###   ########.fr       */
+/*   Updated: 2022/03/28 17:30:56 by jpuronah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
+#include <stdio.h>
 
 /* Added: sub_string = NULL line 27
 	changed tetri_list malloc
@@ -55,13 +56,14 @@ char	**ft_separate(char *pieces)
 	ssize_t	index;
 
 	tetri_list = NULL;
-	tetri_list = (char **)malloc(sizeof(char) * ft_strlen(pieces) + 1);
+	tetri_list = (char **)malloc(sizeof(
+				char *) * (((ft_strlen(pieces) + 1) / 21) + 1));
 	if (!tetri_list)
 		ft_error();
 	chr = 0;
 	index = 0;
 	start = 0;
-	while (pieces[index] != '\0')
+	while (start < ft_strlen(pieces) && pieces[start])
 	{
 		if (index++ % 20 == 0)
 		{
@@ -71,37 +73,5 @@ char	**ft_separate(char *pieces)
 		}
 	}
 	tetri_list[chr] = NULL;
-	free(pieces);
 	return (tetri_list);
 }
-
-/*
-char	**ft_separate(char *pieces)
-{
-	char	**tetri_list;
-	size_t	start;
-	ssize_t	chr;
-	ssize_t	index;
-	size_t	len_pieces;
-
-	tetri_list = NULL;
-	len_pieces = ft_strlen(pieces);
-	tetri_list = (char **)malloc(sizeof(char) * len_pieces + 1);
-	if (!tetri_list)
-		ft_error();
-	chr = 0;
-	index = 0;
-	start = 0;
-	while (pieces[index] != '\0')
-	{
-		if (index++ % 20 == 0)
-		{
-			tetri_list[chr] = ft_strsub_chr(pieces, start, 20, chr);
-			chr++;
-			start = start + 21;
-		}
-	}
-	tetri_list[chr] = NULL;
-	free(pieces);
-	return (tetri_list);
-}*/
