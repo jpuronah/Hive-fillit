@@ -6,7 +6,7 @@
 /*   By: jpuronah <jpuronah@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/28 12:10:11 by twileniu          #+#    #+#             */
-/*   Updated: 2022/03/24 17:00:58 by jpuronah         ###   ########.fr       */
+/*   Updated: 2022/03/28 10:29:07 by jpuronah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,7 @@ NÄÄ KAKS!!!!!!
 
 Lisäks:
 - Makefiles leaks taas et se pitää muistaa vaihtaa lopuks
-- 
 */
-
 
 /* Pitäskö täs olla ft_putendl_fd?
 	niiku näi:
@@ -34,8 +32,6 @@ Lisäks:
 		ft_putendl_fd("error", 2);
 		exit(EXIT_FAILURE);
 	}
-
-
 */
 
 void	ft_error(void)
@@ -44,37 +40,29 @@ void	ft_error(void)
 	exit(EXIT_FAILURE);
 }
 
-/*Vaihoin usages STDERR_FILENO ykkösiks, et output menee fileen jos:
-	>./fillit > output
-
-	Tää ei ees toimi, enkä tiiä pitäskö ton toimii tollee
-*/
-
 static void	ft_usage(void)
 {
-	ft_putstr_fd("usage: ", 2);
-	ft_putstr_fd("fillit", 2);
-	ft_putstr_fd(" input_file\n", 2);
+	ft_putendl("usage: ./fillit source_file");
+	exit(EXIT_FAILURE);
 }
-/*Mainissa noi ehdot: if(jotain paskaa), tarviiks olla?
-
-*/
 
 int	main(int argc, char **argv)
 {
 	char	*pieces;
 	char	**tetri_list;
 
-	pieces = NULL;			//Lisäsin kans nää
-	tetri_list = NULL;		//Lisäsin kans nää
+	pieces = NULL;
+	tetri_list = NULL;
 	if (argc == 2)
 	{
 		pieces = ft_reader(argv[1]);
-		if (pieces)
-			ft_checks(pieces);
+		if (!pieces)
+			ft_error();
+		ft_checks(pieces);
 		tetri_list = ft_separate(pieces);
-		if (tetri_list)
-			ft_board(tetri_list);
+		if (!tetri_list)
+			ft_error();
+		ft_board(tetri_list);
 	}
 	else
 		ft_usage();
