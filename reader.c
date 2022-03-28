@@ -6,7 +6,7 @@
 /*   By: jpuronah <jpuronah@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/28 12:33:09 by twileniu          #+#    #+#             */
-/*   Updated: 2022/03/24 17:04:26 by jpuronah         ###   ########.fr       */
+/*   Updated: 2022/03/28 10:35:45 by jpuronah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,25 +16,26 @@
 asetetaa uusiks, en tiiä onksil välii
 */
 
-static char	*ft_read_to_fill(char *pieces, int fd, char *argv)
+static char	*ft_read_to_fill(char *argv, char *pieces)
 {
-	size_t	i;
-	ssize_t	n_bytes;
+	int		fd;
 	char	buf;
+	size_t	index;
+	ssize_t	n_bytes;
 
-	buf = '\0';			//TÄäki yks hyvä kysymys
+	buf = '\0';
 	n_bytes = 0;
 	fd = open(argv, O_RDONLY);
 	if (fd < 0)
 		ft_error();
 	n_bytes = read(fd, &buf, 1);
-	i = 0;
+	index = 0;
 	while (n_bytes == 1)
 	{
-		pieces[i++] = buf;
+		pieces[index++] = buf;
 		n_bytes = read(fd, &buf, 1);
 	}
-	pieces[i] = '\0';
+	pieces[index] = '\0';
 	close(fd);
 	return (pieces);
 }
@@ -47,7 +48,7 @@ char	*ft_reader(char *argv)
 	ssize_t	n_bytes;
 	size_t	length;
 
-	buf = '\0';				//TÄäki yks hyvä kysymys
+	buf = '\0';
 	pieces = NULL;
 	fd = open(argv, O_RDONLY);
 	if (fd < 0)
@@ -63,5 +64,5 @@ char	*ft_reader(char *argv)
 	if (!pieces)
 		ft_error();
 	close(fd);
-	return (ft_read_to_fill(pieces, fd, argv));
+	return (ft_read_to_fill(argv, pieces));
 }
