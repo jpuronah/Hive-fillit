@@ -6,16 +6,11 @@
 /*   By: jpuronah <jpuronah@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/03 14:09:20 by jpuronah          #+#    #+#             */
-/*   Updated: 2022/03/24 16:54:13 by jpuronah         ###   ########.fr       */
+/*   Updated: 2022/03/28 14:06:11 by jpuronah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
-#include <stdio.h>
-
-/*Täält lähti i = optimization fakkiin
-
-*/
 
 static ssize_t	ft_placement_check(char *board, char c, size_t size)
 {
@@ -46,29 +41,30 @@ static ssize_t	ft_placement_check(char *board, char c, size_t size)
 		return (0);
 }
 
-static void	ft_clear_previous(char *board, ssize_t c)
+static void	ft_clear_previous(char *board, ssize_t chr)
 {
-	ssize_t	i;
+	ssize_t	index;
 
-	i = 0;
-	while (board[i] != '\0')
+	index = 0;
+	while (board[index] != '\0')
 	{
-		if (board[i] == c)
-			board[i] = '.';
-		++i;
+		if (board[index] == chr)
+			board[index] = '.';
+		++index;
 	}
 }
 
-static size_t	ft_adjust_position(char *piece, size_t i, size_t j, size_t size)
+static size_t	ft_adjust_index(char *piece, size_t index, size_t j,
+size_t size)
 {
 	if (piece[j] == '\n' && size == 3)
-		i--;
+		index--;
 	if (piece[j] == '\n' && size != 3 && size != 4)
-		i += (size - 4);
-	return (i);
+		index += (size - 4);
+	return (index);
 }
 
-static size_t	ft_place(char *board, char *tetri, size_t i, size_t size)
+static size_t	ft_place(char *board, char *tetri, size_t index, size_t size)
 {
 	size_t		j;
 	char		letter;
@@ -79,15 +75,15 @@ static size_t	ft_place(char *board, char *tetri, size_t i, size_t size)
 	letter = tetri[j];
 	while (tetri[j])
 	{
-		i = ft_adjust_position(tetri, i, j, size);
-		if (i > (size * (size + 1)) || board[i] == '\0')
+		index = ft_adjust_index(tetri, index, j, size);
+		if (index > (size * (size + 1)) || board[index] == '\0')
 			break ;
-		if (board[i] == '.' && tetri[j] >= 'A')
+		if (board[index] == '.' && tetri[j] >= 'A')
 		{
-			board[i] = tetri[j];
+			board[index] = tetri[j];
 			++count;
 		}
-		i++;
+		index++;
 		j++;
 		if (count == 4)
 			break ;
@@ -99,22 +95,22 @@ static size_t	ft_place(char *board, char *tetri, size_t i, size_t size)
 
 char	*ft_solve(char *board, char **tetri_list, size_t size)
 {
-	size_t	i;
+	size_t	index;
 
-	i = 0;
+	index = 0;
 	if (!tetri_list[0])
 		return (board);
 	while (tetri_list[0] && tetri_list[0][0] < 'A')
 		tetri_list[0]++;
-	while (board[i])
+	while (board[index])
 	{
-		if (ft_place(board, *tetri_list, i, size) != 1)
-			ft_clear_previous(&board[i], *tetri_list[0]);
+		if (ft_place(board, *tetri_list, index, size) != 1)
+			ft_clear_previous(&board[index], *tetri_list[0]);
 		else if (!ft_solve(board, &tetri_list[1], size))
-			ft_clear_previous(&board[i], *tetri_list[0]);
+			ft_clear_previous(&board[index], *tetri_list[0]);
 		else
 			return (board);
-		++i;
+		++index;
 	}
 	return (NULL);
 }
