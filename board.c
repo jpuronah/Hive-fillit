@@ -6,7 +6,7 @@
 /*   By: jpuronah <jpuronah@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/31 15:29:51 by jpuronah          #+#    #+#             */
-/*   Updated: 2022/03/24 16:53:06 by jpuronah         ###   ########.fr       */
+/*   Updated: 2022/03/28 13:52:27 by jpuronah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,38 +40,29 @@ static char	*ft_empty_board(char *board, size_t size)
 	return (board);
 }
 
-/* ft_set_board:
-Koitin malloccaa outputtia, asettaa board = output yms,
-ja kaikki johti memory leakkeihi. Tää nykyne ei vuoda kummalkaa testil 
-(testfile, 2 palaa)*/
-
 static char	*ft_set_board(char *board, char **tetri_list, size_t size)
 {
 	char	*output;
 
 	output = NULL;
-	while (1)
+	while (board && tetri_list && size) //onks tää parempi ehto ku while (1) ? ja onks tää normin mukaa ok?
 	{
-		board = ft_empty_board(board, size); //Täs oli ennen pelkästää function call (ei board = ft....)
-		//output = ft_strnew(size * (size + 1) + 1);
+		board = ft_empty_board(board, size);
 		output = ft_solve(board, tetri_list, size);
-		/*board = output;
-		free(output);*/
-		//printf("output1:\n%s\n", output);
 		if (!output)
 		{
 			size++;
 			free(board);
-			board = ft_strnew(size * (size + 1) + 1);
+			//board = ft_strnew(size * (size + 1) + 1);			näist toine
+			board = (char *)malloc(sizeof(size * (size + 1) + 1));
 		}
 		else
-		{
-			//printf("output2:\n%s\n", output);
 			return (output); //Täs oli ennen board
-		}
 	}
 	return (NULL);
 }
+
+//Yks vaihtis ois myös initializaa boardi vast ft_set_boardis ja printtaa se sielt
 
 void	ft_board(char **tetri_list)
 {
@@ -81,12 +72,13 @@ void	ft_board(char **tetri_list)
 
 	size = 0;
 	n_pieces = 0;
-	board = NULL;	//Lisäsin tän
+	board = NULL;
 	while (tetri_list[n_pieces] != NULL)
 		++n_pieces;
 	while (size * size < n_pieces * 4)
 		size++;
-	board = ft_strnew(size * (size + 1) + 1);
+	//board = ft_strnew(size * (size + 1) + 1);			//näist pitäs valita
+	board = (char *)malloc(sizeof(size * (size + 1) + 1));
 	if (!tetri_list || !board)
 		ft_error();
 	board = ft_set_board(board, tetri_list, size);
