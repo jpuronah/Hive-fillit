@@ -6,32 +6,15 @@
 /*   By: jpuronah <jpuronah@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/28 12:10:11 by twileniu          #+#    #+#             */
-/*   Updated: 2022/03/28 10:29:07 by jpuronah         ###   ########.fr       */
+/*   Updated: 2022/03/28 10:31:39 by jpuronah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 
 /*
-= = = =  Lisätty ympäri ohjelmaa initializationeit, eli XXX = NULL; = = = =
 
-
-NÄÄ KAKS!!!!!!
-- halutaaks printtaa vaik esim ft_putendl_fd:llä mielummi toi error?
-- ft_usagen fd, onks STDERR_FILENO oikee vai iha vaa ykköne (1)
-
-Lisäks:
 - Makefiles leaks taas et se pitää muistaa vaihtaa lopuks
-*/
-
-/* Pitäskö täs olla ft_putendl_fd?
-	niiku näi:
-
-	void	ft_error(void)
-	{
-		ft_putendl_fd("error", 2);
-		exit(EXIT_FAILURE);
-	}
 */
 
 void	ft_error(void)
