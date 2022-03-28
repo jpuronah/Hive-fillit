@@ -5,42 +5,45 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: jpuronah <jpuronah@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/02/28 16:18:05 by twileniu          #+#    #+#             */
-/*   Updated: 2022/03/24 16:53:25 by jpuronah         ###   ########.fr       */
+/*   Created: 2022/03/28 11:16:39 by jpuronah          #+#    #+#             */
+/*   Updated: 2022/03/28 11:31:51 by jpuronah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
-#include <stdio.h>
 
-/*Korjasin täält mallocin rivilt 57 about, double chekkaus por feivör
+/* Added: sub_string = NULL line 27
+	changed tetri_list malloc
 
-*/
+	vielki outo: eka malloccaan koko piecesin verran tilaa, minkä jälkee
+	jokaselle tetripiecelle vielä eriksee 21??!! en ymmärrä
+	*/
 
 static char	*ft_strsub_chr(char const *pieces, size_t start,
 size_t len, ssize_t chr)
 {
 	char	*sub_string;
-	size_t	i;
+	size_t	index;
 
 	if (!pieces)
 		return (NULL);
 	if (start >= ft_strlen(pieces))
 		return (NULL);
+	sub_string = NULL;
 	sub_string = (char *)malloc(sizeof(char) * (len + 1));
 	if (!sub_string)
 		ft_error();
-	i = 0;
-	while (i < len && pieces[start] != '\0')
+	index = 0;
+	while (index < len && pieces[start] != '\0')
 	{
 		if (pieces[start] == '#')
-			sub_string[i] = (char)(chr + 65);
+			sub_string[index] = (char)(chr + 65);
 		else
-			sub_string[i] = pieces[start];
+			sub_string[index] = pieces[start];
 		start++;
-		i++;
+		index++;
 	}
-	sub_string[i] = '\0';
+	sub_string[index] = '\0';
 	return (sub_string);
 }
 
@@ -48,27 +51,57 @@ char	**ft_separate(char *pieces)
 {
 	char	**tetri_list;
 	size_t	start;
-	ssize_t	j;
-	ssize_t	k;
-	size_t	n_pieces;
+	ssize_t	chr;
+	ssize_t	index;
 
-	n_pieces = (ft_strlen(pieces) + 1) / 21;
-	tetri_list = (char **)malloc(sizeof(char) * (n_pieces * 21) + 1);
+	tetri_list = NULL;
+	tetri_list = (char **)malloc(sizeof(char) * ft_strlen(pieces) + 1);
 	if (!tetri_list)
 		ft_error();
-	j = 0;
-	k = 0;
+	chr = 0;
+	index = 0;
 	start = 0;
-	while (pieces[k] != '\0')
+	while (pieces[index] != '\0')
 	{
-		if (k++ % 20 == 0)
+		if (index++ % 20 == 0)
 		{
-			tetri_list[j] = ft_strsub_chr(pieces, start, 20, j);
-			j++;
+			tetri_list[chr] = ft_strsub_chr(pieces, start, 20, chr);
+			chr++;
 			start = start + 21;
 		}
 	}
-	tetri_list[j] = NULL;
+	tetri_list[chr] = NULL;
 	free(pieces);
 	return (tetri_list);
 }
+
+/*
+char	**ft_separate(char *pieces)
+{
+	char	**tetri_list;
+	size_t	start;
+	ssize_t	chr;
+	ssize_t	index;
+	size_t	len_pieces;
+
+	tetri_list = NULL;
+	len_pieces = ft_strlen(pieces);
+	tetri_list = (char **)malloc(sizeof(char) * len_pieces + 1);
+	if (!tetri_list)
+		ft_error();
+	chr = 0;
+	index = 0;
+	start = 0;
+	while (pieces[index] != '\0')
+	{
+		if (index++ % 20 == 0)
+		{
+			tetri_list[chr] = ft_strsub_chr(pieces, start, 20, chr);
+			chr++;
+			start = start + 21;
+		}
+	}
+	tetri_list[chr] = NULL;
+	free(pieces);
+	return (tetri_list);
+}*/
