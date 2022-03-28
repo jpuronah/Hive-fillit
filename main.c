@@ -6,16 +6,11 @@
 /*   By: jpuronah <jpuronah@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/28 12:10:11 by twileniu          #+#    #+#             */
-/*   Updated: 2022/03/28 10:31:39 by jpuronah         ###   ########.fr       */
+/*   Updated: 2022/03/28 17:39:02 by jpuronah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
-
-/*
-
-- Makefiles leaks taas et se pitää muistaa vaihtaa lopuks
-*/
 
 void	ft_error(void)
 {
@@ -43,6 +38,7 @@ int	main(int argc, char **argv)
 			ft_error();
 		ft_checks(pieces);
 		tetri_list = ft_separate(pieces);
+		free(pieces);
 		if (!tetri_list)
 			ft_error();
 		ft_board(tetri_list);
